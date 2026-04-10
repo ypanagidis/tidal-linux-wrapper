@@ -1,7 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Button, Card, InfoTooltip } from "@repo/ui";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  Badge,
+  Button,
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  InfoTooltip,
+  Spinner,
+} from "@repo/ui";
 import { getDesktopApi } from "../lib/desktop";
 import { useTRPC } from "../integrations/trpc";
 
@@ -34,36 +48,56 @@ function HomePage() {
   return (
     <div className="grid gap-4">
       <Card>
-        <div className="mb-3 flex items-center gap-2">
-          <h1 className="m-0 text-xl font-semibold text-slate-900">First vertical slice</h1>
-          <InfoTooltip label="This info icon is rendered with Base UI Tooltip primitives." />
-        </div>
-        <p className="m-0 text-slate-600">
-          This page proves: TanStack Start renderer, tRPC endpoint, TanStack Query cache,
-          Effect-powered domain logic, Zod boundary validation, and Electron preload bridge.
-        </p>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            First vertical slice
+            <InfoTooltip label="This info icon is rendered with shadcn tooltip primitives." />
+          </CardTitle>
+          <CardDescription>
+            This page proves: TanStack Start renderer, tRPC endpoint, TanStack Query cache,
+            Effect-powered domain logic, Zod boundary validation, and Electron preload bridge.
+          </CardDescription>
+        </CardHeader>
       </Card>
 
       <Card>
-        <h2 className="mb-2 mt-0 text-base font-semibold text-slate-900">
-          tRPC + Query + Effect + Zod
-        </h2>
-        <p className="m-0 text-sm text-slate-600">
-          {healthQuery.isPending && "Loading from /api/trpc/health.ping..."}
-          {healthQuery.isError && "Request failed."}
-          {healthQuery.data &&
-            `${healthQuery.data.message} (requestId: ${healthQuery.data.requestId}, time: ${healthQuery.data.serverTime})`}
-        </p>
+        <CardHeader className="border-b">
+          <CardTitle>tRPC + Query + Effect + Zod</CardTitle>
+          <CardDescription>Live server state from `/api/trpc/health.ping`.</CardDescription>
+          <CardAction>
+            <Badge variant={healthQuery.isError ? "destructive" : "secondary"}>
+              {healthQuery.isPending ? "Loading" : healthQuery.isError ? "Error" : "Healthy"}
+            </Badge>
+          </CardAction>
+        </CardHeader>
+        <CardContent>
+          <p className="m-0 text-sm text-muted-foreground">
+            {healthQuery.isPending && (
+              <span className="inline-flex items-center gap-2">
+                <Spinner className="size-3.5" /> Loading from /api/trpc/health.ping...
+              </span>
+            )}
+            {healthQuery.isError && "Request failed."}
+            {healthQuery.data &&
+              `${healthQuery.data.message} (requestId: ${healthQuery.data.requestId}, time: ${healthQuery.data.serverTime})`}
+          </p>
+        </CardContent>
       </Card>
 
       <Card>
-        <h2 className="mb-2 mt-0 text-base font-semibold text-slate-900">
-          Electron preload bridge
-        </h2>
-        <div className="flex items-center gap-3">
-          <Button onClick={runDesktopPing}>Run desktop ping</Button>
-          <span className="text-sm text-slate-600">{desktopPingResult}</span>
-        </div>
+        <CardHeader>
+          <CardTitle>Electron preload bridge</CardTitle>
+          <CardDescription>Runs a typed IPC ping through `window.desktop`.</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3">
+          <div>
+            <Button onClick={runDesktopPing}>Run desktop ping</Button>
+          </div>
+          <Alert>
+            <AlertTitle>Desktop ping result</AlertTitle>
+            <AlertDescription>{desktopPingResult}</AlertDescription>
+          </Alert>
+        </CardContent>
       </Card>
     </div>
   );

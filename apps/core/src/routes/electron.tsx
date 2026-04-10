@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import { Card } from "@repo/ui";
+import { Badge, Card, CardContent, CardDescription, CardHeader, CardTitle, Spinner } from "@repo/ui";
 import { getDesktopApi } from "../lib/desktop";
 
 export const Route = createFileRoute("/electron")({
@@ -33,8 +33,19 @@ function ElectronHelloPage() {
 
   return (
     <Card>
-      <h1 className="mb-2 mt-0 text-xl font-semibold text-slate-900">Hello from Electron</h1>
-      <p className="m-0 text-slate-600">{message}</p>
+      <CardHeader className="border-b">
+        <CardTitle>Hello from Electron</CardTitle>
+        <CardDescription>Checks desktop bridge health from the renderer route.</CardDescription>
+      </CardHeader>
+      <CardContent className="flex items-center gap-3">
+        <Badge variant={helloQuery.isPending ? "outline" : "secondary"}>
+          {helloQuery.isPending ? "Loading" : "Ready"}
+        </Badge>
+        <p className="m-0 text-sm text-muted-foreground">
+          {helloQuery.isPending && <Spinner className="mr-2 inline-flex size-3.5" />}
+          {message}
+        </p>
+      </CardContent>
     </Card>
   );
 }

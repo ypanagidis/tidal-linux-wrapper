@@ -18,6 +18,7 @@ function createMainWindow() {
     minHeight: 700,
     show: false,
     backgroundColor: "#F6F7FB",
+    autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(process.cwd(), "dist", "preload.cjs"),
       contextIsolation: true,
@@ -32,6 +33,7 @@ function createMainWindow() {
   });
 
   mainWindow.once("ready-to-show", () => {
+    mainWindow.setMenuBarVisibility(false);
     mainWindow.show();
   });
 
