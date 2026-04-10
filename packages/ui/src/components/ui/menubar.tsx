@@ -26,7 +26,7 @@ function Menubar({ className, ...props }: MenubarPrimitive.Props) {
   return (
     <MenubarPrimitive
       data-slot="menubar"
-      className={cn("flex h-9 items-center rounded-lg border p-1", className)}
+      className={cn("flex h-9 items-center rounded-xl bg-surface-container-low p-1", className)}
       {...props}
     />
   )
@@ -196,7 +196,7 @@ function MenubarSeparator({
   return (
     <DropdownMenuSeparator
       data-slot="menubar-separator"
-      className={cn("-mx-1 my-1 h-px bg-border/50", className)}
+      className={cn("-mx-1 my-1 h-1 bg-transparent", className)}
       {...props}
     />
   )

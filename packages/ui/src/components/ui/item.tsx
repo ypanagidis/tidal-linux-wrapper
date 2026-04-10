@@ -35,18 +35,18 @@ function ItemSeparator({
 }
 
 const itemVariants = cva(
-  "group/item flex w-full flex-wrap items-center rounded-md border text-xs/relaxed transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-muted",
+  "group/item flex w-full flex-wrap items-center rounded-md text-xs/relaxed transition-colors duration-100 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-surface-container-high",
   {
     variants: {
       variant: {
-        default: "border-transparent",
-        outline: "border-border",
-        muted: "border-transparent bg-muted/50",
+        default: "bg-transparent",
+        outline: "bg-surface-container-lowest ring-1 ring-border",
+        muted: "bg-surface-container-low",
       },
       size: {
-        default: "gap-2.5 px-3 py-2.5",
-        sm: "gap-2.5 px-3 py-2.5",
-        xs: "gap-2.5 px-2.5 py-2 in-data-[slot=dropdown-menu-content]:p-0",
+        default: "gap-2.5 px-3 py-4",
+        sm: "gap-2.5 px-3 py-4",
+        xs: "gap-2.5 px-2.5 py-3 in-data-[slot=dropdown-menu-content]:p-0",
       },
     },
     defaultVariants: {
@@ -129,10 +129,10 @@ function ItemTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="item-title"
-      className={cn(
-        "font-heading line-clamp-1 flex w-fit items-center gap-2 text-xs/relaxed leading-snug font-medium underline-offset-4",
-        className
-      )}
+        className={cn(
+          "font-heading line-clamp-1 flex w-fit items-center gap-2 text-xs/relaxed leading-snug font-semibold underline-offset-4",
+          className
+        )}
       {...props}
     />
   )

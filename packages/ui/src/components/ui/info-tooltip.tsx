@@ -12,14 +12,14 @@ function InfoTooltip({ label, className }: InfoTooltipProps) {
       <TooltipTrigger
         aria-label="More info"
         className={cn(
-          "inline-flex size-5 items-center justify-center rounded-full border border-slate-300 text-xs text-slate-700",
-          "hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400",
+          "inline-flex size-5 items-center justify-center rounded-full bg-surface-container-low text-xs text-muted-foreground ring-1 ring-border",
+          "hover:bg-surface-container-high focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
           className
         )}
       >
         i
       </TooltipTrigger>
-      <TooltipContent className="max-w-64 rounded-md bg-slate-900 px-2 py-1.5 text-xs text-white shadow-lg">
+      <TooltipContent className="max-w-64 rounded-md px-2 py-1.5 text-xs">
         {label}
       </TooltipContent>
     </Tooltip>
