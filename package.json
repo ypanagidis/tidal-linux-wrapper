@@ -1,0 +1,37 @@
+{
+  "name": "tidal-wrapper",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev --filter=@repo/core-app --filter=@repo/desktop",
+    "dev:core": "turbo run dev --filter=@repo/core-app",
+    "dev:marketing": "turbo run dev --filter=@repo/marketing",
+    "dev:docs": "turbo run dev --filter=@repo/docs",
+    "dev:desktop": "turbo run dev --filter=@repo/desktop",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "typecheck:repo": "pnpm --filter @repo/core-app routes:generate && pnpm --filter @repo/marketing routes:generate && pnpm --filter @repo/docs routes:generate && turbo run typecheck",
+    "lint": "pnpm lint:repo",
+    "lint:repo": "oxlint .",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "check": "pnpm lint && pnpm typecheck && pnpm format:check",
+    "clean": "turbo run clean",
+    "prepare": "effect-language-service patch"
+  },
+  "devDependencies": {
+    "@effect/language-service": "^0.85.1",
+    "@types/node": "^22.15.17",
+    "@typescript/native-preview": "^7.0.0-dev.20260410.1",
+    "effect-solutions": "^0.5.2",
+    "oxfmt": "^0.44.0",
+    "oxlint": "^1.17.0",
+    "oxlint-tsgolint": "^0.20.0",
+    "turbo": "^2.5.0",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.12.3"
+}

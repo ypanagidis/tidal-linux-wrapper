@@ -1,0 +1,42 @@
+{
+  "name": "@repo/docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "scripts": {
+    "dev": "pnpm docs:source && vite dev --port 3002",
+    "docs:source": "fumadocs-mdx",
+    "routes:generate": "tsr generate",
+    "build": "pnpm docs:source && pnpm routes:generate && vite build",
+    "preview": "vite preview --port 3002",
+    "typecheck": "pnpm docs:source && pnpm routes:generate && tsgo --project tsconfig.json --noEmit",
+    "lint": "oxlint src source.config.ts vite.config.ts",
+    "clean": "rm -rf dist .output .source src/routeTree.gen.ts"
+  },
+  "dependencies": {
+    "@tanstack/react-router": "latest",
+    "@tanstack/react-router-devtools": "latest",
+    "@tanstack/react-start": "latest",
+    "fumadocs-core": "^16.7.11",
+    "fumadocs-mdx": "^14.2.11",
+    "fumadocs-ui": "^16.7.11",
+    "lucide-react": "^1.7.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwind-merge": "^3.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "@tanstack/router-cli": "latest",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "^25.5.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "nitro": "^3.0.260311-beta",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.7"
+  }
+}

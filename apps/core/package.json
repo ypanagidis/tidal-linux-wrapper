@@ -1,0 +1,41 @@
+{
+  "name": "@repo/core-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev --port 3000",
+    "routes:generate": "tsr generate",
+    "build": "pnpm routes:generate && vite build",
+    "preview": "vite preview --port 3000",
+    "typecheck": "pnpm routes:generate && tsgo --project tsconfig.json --noEmit",
+    "lint": "oxlint \"src/**/*.{ts,tsx}\"",
+    "clean": "rm -rf dist .output src/routeTree.gen.ts"
+  },
+  "dependencies": {
+    "@repo/api": "workspace:*",
+    "@repo/desktop-bridge": "workspace:*",
+    "@repo/tooling": "workspace:*",
+    "@repo/ui": "workspace:*",
+    "@tanstack/react-query": "latest",
+    "@tanstack/react-query-devtools": "latest",
+    "@tanstack/react-router": "latest",
+    "@tanstack/react-router-devtools": "latest",
+    "@tanstack/react-start": "latest",
+    "@trpc/client": "^11.1.1",
+    "@trpc/server": "^11.1.1",
+    "@trpc/tanstack-react-query": "^11.1.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.4",
+    "@tanstack/router-cli": "latest",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^5.1.4",
+    "tailwindcss": "^4.1.4",
+    "vite": "^7.3.1",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}

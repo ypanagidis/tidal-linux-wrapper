@@ -1,0 +1,29 @@
+---
+title: Overview
+description: Architecture and workflow for Tidal Wrapper.
+icon: AppWindow
+---
+
+Tidal Wrapper is a desktop-first monorepo built for long-term maintainability.
+
+## Workspace apps
+
+- `apps/desktop`: Electron shell (main + preload)
+- `apps/core`: Product renderer with TanStack Start
+- `apps/marketing`: Public website
+- `apps/docs`: This documentation site
+
+<Cards>
+  <Card title="TanStack Start" href="https://tanstack.com/start" />
+  <Card title="Effect" href="https://effect.website" />
+  <Card title="Fumadocs" href="https://fumadocs.dev" />
+</Cards>
+
+### Common commands
+
+```ts
+pnpm dev
+pnpm dev:docs
+pnpm dev:marketing
+pnpm check
+```

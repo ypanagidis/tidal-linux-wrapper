@@ -1,0 +1,18 @@
+node_modules
+.pnpm-store
+.turbo
+dist
+build
+coverage
+.output
+.DS_Store
+*.log
+
+# TanStack Router generated files
+apps/*/src/routeTree.gen.ts
+apps/docs/.source
+
+# Env files
+.env
+.env.*
+!.env.example

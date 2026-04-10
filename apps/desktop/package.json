@@ -1,0 +1,29 @@
+{
+  "name": "@repo/desktop",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/main.cjs",
+  "scripts": {
+    "dev": "concurrently -k -n BUILD,ELECTRON \"pnpm dev:build\" \"pnpm dev:electron\"",
+    "dev:build": "tsup --config tsup.config.ts --watch",
+    "dev:electron": "wait-on dist/main.cjs http-get://localhost:3000 && cross-env APP_URL=http://localhost:3000 electronmon dist/main.cjs",
+    "build": "tsup --config tsup.config.ts --clean",
+    "start": "cross-env NODE_ENV=production electron dist/main.cjs",
+    "typecheck": "tsgo --project tsconfig.json --noEmit",
+    "lint": "oxlint \"src/**/*.ts\"",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@repo/desktop-bridge": "workspace:*",
+    "@repo/tooling": "workspace:*",
+    "electron": "^35.1.5"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electronmon": "^2.0.2",
+    "tsup": "^8.4.0",
+    "wait-on": "^8.0.3"
+  }
+}
